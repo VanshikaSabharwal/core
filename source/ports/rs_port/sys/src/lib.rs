@@ -184,7 +184,7 @@ fn find_metacall_library() -> Result<LibraryPath, Box<dyn std::error::Error>> {
             // Search with no limit in depth
             match find_files_recursively(search_path, name, None) {
                 Ok(files) if !files.is_empty() => {
-                    let found_lib = fs::canonicalize(&files[0])?;
+                    let found_lib = files[0].clone();
 
                     match get_parent_and_library(&found_lib) {
                         Some((parent, library_name)) => {
